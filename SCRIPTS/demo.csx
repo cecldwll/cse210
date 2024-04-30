@@ -1,11 +1,13 @@
 using System;
 //using Internal;
 
-// This is equivalent to Python's print statement
-Console.WriteLine("Hello what is your name!?"); // console is a class, writeline is a method of the console class
+// Lists
+List<string> fruits = new(); // Create a new list of strings
 
-// This is equivalent to Python's input function
-string name = Console.ReadLine();
+fruits.Add("Apple"); // Add elements to the list
+fruits.Add("Banana");
+fruits.Add("Orange");
+fruits.Add("Grape");
 
-// This is equivalent to Python's f-string
-Console.WriteLine($"Hello, {name}!"); // double quotes are for strings, single quote are for single character
+fruits.Remove("Banana"); // Remove elements from the list
+fruits.RemoveAt(2);
