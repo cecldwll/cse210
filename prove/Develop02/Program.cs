@@ -7,12 +7,12 @@ class Program
         PromptGenerator promptGenerator = new PromptGenerator();
         Journal journal = new Journal();
 
-        Console.WriteLine("\nWelcome to the Journal Program!\n");
+        Console.WriteLine("\nWelcome to the Journal Program!");
 
         bool repeat = true;
         while (repeat)
         {
-            Console.WriteLine("Please select one of the following choices: \n1. Write\n2. Display\n3. Load\n4. Save\n5. Quit\n");
+            Console.WriteLine("\nPlease select one of the following choices: \n1. Write\n2. Display\n3. Load\n4. Save\n5. Quit\n");
             
             Console.Write("What would you like to do? ");
             int choice = int.Parse(Console.ReadLine());
@@ -20,6 +20,7 @@ class Program
             switch (choice)
             {
                 case 1:
+                    journal.Weather();
                     journal.WriteNewEntry(promptGenerator.GetRandomPrompt());
                     break;
                 case 2:

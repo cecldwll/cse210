@@ -11,6 +11,14 @@ public class Journal
         entries = new List<Entry>();
     }
 
+    public void Weather()
+    {
+        Console.Write("Weather: ");
+        string response = Console.ReadLine();
+        Entry newEntry = new Entry("Weather", response, DateTime.Now);
+        entries.Add(newEntry); 
+    }
+
     public void WriteNewEntry(string prompt)
     {
         Console.WriteLine(prompt);
