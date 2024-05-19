@@ -20,7 +20,7 @@ class Program
             switch (choice)
             {
                 case 1:
-                    journal.Weather();
+                    journal.Weather(); // Exceeds core requirements/add creativity
                     journal.WriteNewEntry(promptGenerator.GetRandomPrompt());
                     break;
                 case 2:
