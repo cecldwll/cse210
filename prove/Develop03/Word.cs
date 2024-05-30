@@ -1,28 +1,41 @@
 using System;
 
-class Word
+namespace ScriptureMemorizer
 {
-    private string text;
-    private bool hidden;
-
-    public Word(string text)
+    class Word
     {
-        this.text = text;
-        this.hidden = false;
-    }
+        private string _text;  // The actual word text
+        private bool _hidden;  // Flag indicating whether the word is hidden
 
-    public void Hide()
-    {
-        hidden = true;
-    }
+        // Constructor to initialize word with text
+        public Word(string text)
+        {
+            _text = text;
+            _hidden = false;
+        }
 
-    public string Display()
-    {
-        return hidden ? new string('-', text.Length) : text;
-    }
+        // Method to hide the word
+        public void Hide()
+        {
+            _hidden = true;
+        }
 
-    public string GetText()
-    {
-        return text;
+        // Display the word (hidden words are shown as dashes)
+        public string Display()
+        {
+            return _hidden ? new string('_', _text.Length) : _text;
+        }
+
+        // Check if the word is hidden
+        public bool IsHidden()
+        {
+            return _hidden;
+        }
+
+        // Get the text of the word
+        public string GetText()
+        {
+            return _text;
+        }
     }
 }

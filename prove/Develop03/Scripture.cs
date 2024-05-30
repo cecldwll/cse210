@@ -1,61 +1,83 @@
 using System;
 using System.Collections.Generic;
 
-class Scripture
+namespace ScriptureMemorizer
 {
-    private string reference;
-    private List<Word> words;
-
-    public Scripture(string reference, string text)
+    class Scripture
     {
-        this.reference = reference;
-        SplitText(text);
-    }
+        private Reference _reference; // Scripture reference
+        private List<Word> _words;    // List of words in the scripture
 
-    private void SplitText(string text)
-    {
-        words = new List<Word>();
-        string[] splitWords = text.Split(' ');
-        foreach (var word in splitWords)
+        // Constructor to initialize scripture with reference and text
+        public Scripture(Reference reference, string text)
         {
-            words.Add(new Word(word));
+            _reference = reference;
+            SplitText(text);
         }
-    }
 
-    public string Display()
-    {
-        string result = $"{reference}\n";
-        foreach (var word in words)
+        // Split text into words and create Word objects
+        private void SplitText(string text)
         {
-            result += word.Display() + " ";
+            _words = new List<Word>();
+            string[] splitWords = text.Split(' ');
+            foreach (var word in splitWords)
+            {
+                _words.Add(new Word(word));
+            }
         }
-        return result.Trim();
-    }
 
-    public void HideRandomWords()
-    {
-        Random random = new Random();
-        int countToHide = Math.Max(1, words.Count / 4); // Adjust as needed
-
-        for (int i = 0; i < countToHide; i++)
+        // Display the scripture with hidden words represented as dashes
+        public string Display()
         {
-            int index = random.Next(words.Count);
-            words[index].Hide();
+            string result = $"{_reference.Display()}\n";
+            foreach (var word in _words)
+            {
+                result += word.Display() + " ";
+            }
+            return result.Trim();
         }
-    }
 
-    public string GetReference()
-    {
-        return reference;
-    }
-
-    public string GetText()
-    {
-        List<string> wordTexts = new List<string>();
-        foreach (var word in words)
+        // Hide random words in the scripture
+        public void HideRandomWords()
         {
-            wordTexts.Add(word.GetText());
+            Random random = new Random();
+            int countToHide = Math.Max(1, _words.Count / 4);
+
+            for (int i = 0; i < countToHide; i++)
+            {
+                int index = random.Next(_words.Count);
+                _words[index].Hide();
+            }
         }
-        return string.Join(" ", wordTexts);
+
+        // Check if all words are hidden
+        public bool AllWordsHidden()
+        {
+            foreach (var word in _words)
+            {
+                if (!word.IsHidden())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Get the reference of the scripture
+        public string GetReference()
+        {
+            return _reference.Display();
+        }
+
+        // Get the text of the scripture
+        public string GetText()
+        {
+            List<string> wordTexts = new List<string>();
+            foreach (var word in _words)
+            {
+                wordTexts.Add(word.GetText());
+            }
+            return string.Join(" ", wordTexts);
+        }
     }
 }
